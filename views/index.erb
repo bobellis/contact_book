@@ -1,0 +1,14 @@
+<h3> Address Book </h3>
+
+<ul>
+  <% if Contact.all().length > 0 %>
+    <% @contacts.each do |person| %>
+      <li><a href="contact/<%= person.contact_id() %>"><%= person.first_name() %></a></li>
+    <% end %>
+  <% else %>
+    <p> No Contacts </p>
+  <% end %>
+</ul>
+
+<a href='/add_contact' role = 'button' class = 'btn btn-success'> Add Contact </a>
+<a href='/reset' role = 'button' class = 'btn btn-danger'> Erase Contacts! </a>
