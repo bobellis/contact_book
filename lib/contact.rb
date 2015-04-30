@@ -8,6 +8,7 @@ class Contact
     @last_name = last_name
     @birthday_month = birthday_month
     @contact_id = @@contacts.length + 1
+    @phone_numbers = []
   end
 
   define_method(:save) do
@@ -30,5 +31,13 @@ class Contact
       end
     end
     found_contact
+  end
+
+  define_method(:add_number) do |phone_number|
+    @phone_numbers.push(phone_number)
+  end
+
+  define_method(:get_numbers) do
+    @phone_numbers
   end
 end

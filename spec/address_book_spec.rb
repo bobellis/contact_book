@@ -1,5 +1,6 @@
 require('rspec')
 require('contact')
+require('phone')
 require('pry')
 
 describe(Contact) do
@@ -69,7 +70,70 @@ describe(Contact) do
     end
   end
 
+  describe('#add_number') do
+    it('will add a number to the phone numbers array in contact') do
+      test_contact = Contact.new("Billy", "Joel", "April")
+      test_contact.save()
+      test_phone = Phone.new(512,6552558,"Cell")
+      test_contact.add_number(test_phone)
+      expect(test_contact.get_numbers()).to(eq([test_phone]))
+    end
+  end
+end
 
+describe Phone do
+  before do
+    Phone.clear()
+  end
 
+  describe('.all') do
+    it('will return array of phone details') do
+      test_phone = Phone.new(304, 5741730, "Home")
+      test_phone.save()
+      expect(Phone.all).to(eq([test_phone]))
+    end
+    it('will be empty at first') do
+      expect(Phone.all).to(eq([]))
+    end
+  end
+
+  describe('.clear') do
+    it('will clear out array of all phone details') do
+      Phone.clear()
+      expect(Phone.all()).to(eq([]))
+    end
+  end
+
+  describe('#save') do
+    it('will save new phone details in array of all phone details') do
+      test_phone = Phone.new(304, 5741730, "Home")
+      test_phone.save()
+      expect(Phone.all).to(eq([test_phone]))
+    end
+  end
+
+  describe('#area_code') do
+    it('will return the area code of a phone number') do
+      test_phone = Phone.new(304, 5741730, "Home")
+      test_phone.save()
+      expect(test_phone.area_code()).to(eq(304))
+    end
+  end
+
+  describe('#number') do
+    it('will return the number portion of a phone number') do
+      test_phone = Phone.new(304, 5741730, "Home")
+      test_phone.save()
+      expect(test_phone.number()).to(eq(5741730))
+    end
+  end
+
+  describe('#type') do
+    it('will return the type of a phone number') do
+      test_phone = Phone.new(304, 5741730, "Home")
+      test_phone.save()
+      expect(test_phone.type()).to(eq('Home'))
+    end
+  end
 
 end
