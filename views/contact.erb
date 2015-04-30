@@ -4,4 +4,31 @@
 <p><b>Last Name:</b> <%= @contact.last_name %></p>
 <p><b>Birthday Month:</b> <%= @contact.birthday_month %></p>
 
+<ul>
+  <% @numbers.each do |object| %>
+  <li><p><b><%= object.type() %>:</b> (<%= object.area_code() %>)-<%=object.number %></p></li>
+
+  <% end %>
+</ul>
+
+
+
+
+
+
+<form action="/save_number" method="post">
+  <input id="specific_contact_id" name="specific_contact_id" type="hidden" value="<%= @contact.contact_id() %>">
+
+  <label for="area_code">Area Code:</label>
+  <input class="form-control phone" type = "number" name = "area_code" id= "area_code">
+
+  <label for="number">Number:</label>
+  <input class="form-control phone" type = "number" name = "number" id= "number">
+
+  <label for="type">Type:</label>
+  <input class="form-control phone" type = "text" name = "type" id= "type" placeholder="ex: Home">
+
+  <button type="submit" class="btn btn-success phone-button">Add Number</button>
+</form>
+
 <a href='/'> Back </a>
