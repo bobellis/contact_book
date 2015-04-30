@@ -32,4 +32,26 @@ describe(Contact) do
     end
   end
 
+  describe('#first_name') do
+    it('will return the first name of a contact') do
+      test_contact = Contact.new("Erin", "Collins", "September")
+      expect(test_contact.first_name()).to(eq("Erin"))
+    end
+  end
+
+  describe('#last_name') do
+    it('will return the last name of a contact') do
+      test_contact = Contact.new("Erin", "Collins", "September")
+      expect(test_contact.last_name()).to(eq("Collins"))
+    end
+  end
+
+  describe('#birthday_month') do
+    it('will return the birthday month of a contact') do
+      test_contact = Contact.new("Erin", "Collins", "September")
+      expect(test_contact.birthday_month()).to(eq("September"))
+    end
+  end
+
+
 end
